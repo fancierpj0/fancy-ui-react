@@ -3,8 +3,14 @@
 module.exports = {
     verbose: true //冗长的，啰唆的，累赘的
     ,clearMocks:false
-    ,collectCoverage:false
-    ,reporters:["default"]
+
+    ,collectCoverage:true
+    //默认__tests__就不会纳入覆盖率测试
+    ,collectCoverageFrom:["lib/**/*.{ts,tsx}","!**/node_modules/**"]
+    ,coverageDirectory:'coverage' //生成的报告放到哪里
+    ,coverageReporters:["text","lcov"] //要哪些报告 text是控制台的输出 lcov是一种有名的报告形式
+
+
     ,moduleFileExtensions:['js','jsx','ts','tsx']
     ,moduleDirectories:['node_modules']
     ,moduleNameMapper:{
