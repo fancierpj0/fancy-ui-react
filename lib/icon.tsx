@@ -5,8 +5,7 @@ import './icon.scss'
 
 interface IconProps {
     name: string;
-    // onClick: React.MouseEventHandler<SVGElement>
-    onClick: (e:React.MouseEvent<SVGElement | SVGUseElement>) => void
+    onClick: React.MouseEventHandler<SVGElement|SVGUseElement>
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
