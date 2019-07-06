@@ -1,0 +1,20 @@
+{
+  "name": "fancy-ui-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fancierpj0/fancy-ui-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fancierpj0/fancy-ui-react/issues"
+  },
+  "homepage": "https://github.com/fancierpj0/fancy-ui-react#readme"
+}
