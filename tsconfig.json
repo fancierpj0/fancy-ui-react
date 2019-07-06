@@ -63,6 +63,7 @@
   },
   "include": [
     //    "./src/**/*" // '**/*'表示 src/下的所有文件
+    "lib/**/*"
   ],
   "exclude": [
     "node_modules",
