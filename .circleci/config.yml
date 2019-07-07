@@ -6,7 +6,7 @@
 # 引用默认配置
 defaults: &defaults
   docker:
-    - image: cicleci/node:8
+    - image: cicleci/node:10
 
 version: 2
 
