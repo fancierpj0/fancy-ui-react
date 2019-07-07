@@ -6,7 +6,7 @@
 # 引用默认配置
 defaults: &defaults
   docker:
-    - image: cicleci/node
+    - image: circleci/node
 
 version: 2
 
