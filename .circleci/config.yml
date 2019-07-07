@@ -52,15 +52,15 @@ jobs:
           paths:
             - dist
 
-  # 设置上面几个阶段的执行顺序
-  workflows:
-    version: 2
-    build_accept_deploy:
-      jobs:
-        - prepare
-        - build:
-            requires:
-              - test
-        - test:
-            requires:
-              - prepare
+# 设置上面几个阶段的执行顺序
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - prepare
+      - build:
+          requires:
+            - test
+      - test:
+          requires:
+            - prepare
