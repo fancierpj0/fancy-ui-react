@@ -1,4 +1,5 @@
 /dist/*
+/test-results
 
 # Editor directories and files
 .idea

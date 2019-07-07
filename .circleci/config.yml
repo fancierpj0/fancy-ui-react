@@ -1,0 +1,66 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+
+# 引用默认配置
+defaults: &defaults
+  docker:
+    - image: cicleci/node:8
+
+version: 2
+
+jobs:
+  prepare:
+    <<: *defaults
+    steps:
+      # 迁出代码 会把代码克隆到一个地方
+      - checkout
+      # 创建缓存 加速之后代码的运行 对node_modules进行缓存 只要package.json没有变，就可以一直使用缓存
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "package.json" }} #根据当前的package.json创建一个md5，以这一行的值作为key，创建缓存
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules # 要保存的文件
+          key: v2-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace: # 把之前保存的代码挪过来
+          at: .
+      - run: npm run ci
+      - store_test_results:
+          path: test-results
+
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+
+  # 设置上面几个阶段的执行顺序
+  workflows:
+    version: 2
+    build_accept_deploy:
+      jobs:
+        - prepare
+        - build:
+            requires:
+              - test
+        - test:
+            requires:
+              - prepare
