@@ -51,6 +51,17 @@ jobs:
           root: .
           paths:
             - dist
+            - package.json
+            - LICENSE
+            - README.md
+
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - run: npm publish
 
 # 设置上面几个阶段的执行顺序
 workflows:
@@ -64,3 +75,6 @@ workflows:
       - test:
           requires:
             - prepare
+      - publish:
+          requires:
+            - build
