@@ -1,5 +1,5 @@
 #! /bin/env bash
 
-npm version patch
+npm version $1 && \
 
 git push
