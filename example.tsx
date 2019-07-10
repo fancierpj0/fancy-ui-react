@@ -17,9 +17,15 @@ ReactDOM.render((
                 <aside>
                     <h2>组件</h2>
                     <ul>
-                        <Link to="/icon">icon</Link>
-                        <Link to="/dialog">dialog</Link>
-                        <Link to="/layout">layout</Link>
+                        <li>
+                            <Link to="/icon">icon</Link>
+                        </li>
+                        <li>
+                            <Link to="/dialog">dialog</Link>
+                        </li>
+                        <li>
+                            <Link to="/layout">layout</Link>
+                        </li>
                     </ul>
                 </aside>
                 <main>

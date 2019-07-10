@@ -1,3 +1,5 @@
+div#root{position:relative;z-index:0;}
+
 [class^=fui-],[class^=fui-]::after,[class^=fui-]::before{
   box-sizing:border-box;
   //font-size:14px; //这里最好不要写 因为属性选择器 权重挺高
