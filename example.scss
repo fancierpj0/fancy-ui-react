@@ -4,8 +4,11 @@
 ul,ol{list-style:none;}
 a{text-decoration:none;color:inherit;}
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
-body{font-size:16px;}
+pre{
+  font-family: "Fira Code Medium",Consolas,monospace;
+}
 
+body{font-size:16px;}
 div#root {position: relative;z-index: 0;}
 
 $padding:16px;
@@ -69,4 +72,8 @@ $border-color:#eee;
   color:#666;
   padding:16px 0px;
   border-top:1px solid $border-color;
+}
+
+.demo{
+  padding:16px 0;
 }
