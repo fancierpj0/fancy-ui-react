@@ -10,6 +10,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "doc": "cross-env NODE_ENV=production webpack --config webpack.config.doc.js",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js"
   },
@@ -37,6 +38,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
@@ -59,7 +61,6 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "enzyme-adapter-react-16": "^1.14.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

@@ -4,6 +4,10 @@ const {smart} = require('webpack-merge');
 module.exports = smart(base, {
     mode: 'production'
 
+    , entry: {
+        index: './lib/index.tsx'
+    }
+
     //↓只有在mode为production时才会生效
     , externals: {
         react: {
