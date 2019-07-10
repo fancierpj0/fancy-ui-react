@@ -36,6 +36,21 @@ module.exports = {
                     }
                 ]
             }
+            ,{
+                test:/\.(png|jpg|gif)$/
+                // ,use:'file-loader'
+                ,use:{
+                    loader:'url-loader'
+                    , options: {
+                        //base64大小会比源文件大1/3左右
+                        // limit:200*1024 //大于的会使用file-loader打包成真正的图片
+                        limit:1
+                        // , publicPath: "http://localhost:3000"
+                        //设置生成图片的目录
+                        // ,outputPath:'/img/'
+                    }
+                }
+            }
         ]
     }
 

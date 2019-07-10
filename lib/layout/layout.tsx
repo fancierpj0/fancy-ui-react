@@ -3,6 +3,9 @@ import './layout.scss';
 
 import {classes, scopedClassMaker} from "../helpers/classes";
 import Aside from "./aside";
+import Header from "./header";
+import Content from "./content";
+import Footer from "./footer";
 
 const sc = scopedClassMaker('fui-layout');
 
@@ -23,3 +26,4 @@ const Layout: React.FunctionComponent<Props> = (props) => {
 };
 
 export default Layout;
+export {Header, Aside, Content, Footer, Layout};
