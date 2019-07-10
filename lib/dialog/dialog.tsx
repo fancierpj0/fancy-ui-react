@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactFragment, ReactNode} from 'react';
+import React, {ReactElement, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
 import './dialog.scss';
 import Icon from "../icon/icon";
@@ -9,6 +9,7 @@ interface Props {
   buttons?: Array<ReactElement>;
   onClose: React.MouseEventHandler;
   closeOnClickMask?: boolean;
+  enabledMask?:boolean;
 }
 
 const scopedClass = scopedClassMaker('fui-dialog');
@@ -57,69 +58,44 @@ Dialog.defaultProps = {
   closeOnClickMask: false
 };
 
-const confirm = (content: string, yes?: () => void, no?: () => void) => {
-  const onYes = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-    yes && yes();
-  };
-  const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-    no && no();
-  };
-  const component = (
-    <Dialog
-      visible={true} onClose={onNo}
-      buttons={[
-        <button onClick={onYes}>yes</button>
-        , <button onClick={onNo}>no</button>]}
-    >
-      {content}
-    </Dialog>);
-  const div = document.createElement('div');
-  document.body.append(div);
-  ReactDOM.render(component, div);
-};
-
-const alert = (content: string) => {
-  const onClose = () => {
+const modal = (content: ReactNode, buttons?: Array<ReactElement>,afterClose?:()=>void ) => {
+  const close = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     ReactDOM.unmountComponentAtNode(div);//事件销毁 垃圾回收的一些工作
     div.remove();
   };
   const component = <Dialog
     visible={true}
-    onClose={onClose}
-    buttons={[<button onClick={onClose}>ok</button>]}
+    onClose={close}
+    buttons={buttons}
   >{content}</Dialog>;
   const div = document.createElement('div');
   document.body.append(div);
   ReactDOM.render(component, div);
+  return close;
 };
 
-
-const modal = (content: ReactNode | ReactFragment) => {
-  const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div);//事件销毁 垃圾回收的一些工作
-    div.remove();
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+  const onYes = () => {
+    close();
+    yes && yes();
   };
-  const component = (
-    <Dialog
-      onClose={onClose}
-      visible={true}>
-      {content}
-    </Dialog>
-  );
+  const onNo = () => {
+    close();
+    no && no();
+  };
 
-  const div = document.createElement('div');
-  document.body.append(div);
-  ReactDOM.render(component, div);
+  const buttons = [
+    <button onClick={onYes}>yes</button>
+    , <button onClick={onNo}>no</button>
+  ];
 
-  return onClose;
+  const close = modal(content, buttons, onNo); //如果是confirm，点击xx，也要调用onNo
+};
+
+const alert = (content: string) => {
+  const button = <button onClick={() => close()}>OK</button>;
+  const close = modal(content, [button]);
 };
 
 export {alert, confirm, modal};
