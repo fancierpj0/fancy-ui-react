@@ -5,4 +5,4 @@ mv -f doc/* ./
 git add -A
 git commit -m "update"
 git push
-git checkout -
+git checkout master
