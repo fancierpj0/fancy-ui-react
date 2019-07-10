@@ -19,6 +19,7 @@ module.exports = smart(base, {
     , plugins: [
         new HtmlWebpackPlugin({
             template: "example.html"
+            , title: 'fancy-ui-react'
             ,filename: 'index.html'
         })
     ]
