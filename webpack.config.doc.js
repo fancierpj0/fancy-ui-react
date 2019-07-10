@@ -19,7 +19,7 @@ module.exports = smart(base, {
     , plugins: [
         new HtmlWebpackPlugin({
             template: "example.html"
-            ,filename: 'example.html'
+            ,filename: 'index.html'
         })
     ]
 });
