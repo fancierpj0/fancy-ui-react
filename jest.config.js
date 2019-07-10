@@ -3,7 +3,7 @@
 module.exports = {
     verbose: true //冗长的，啰唆的，累赘的
     ,clearMocks:false
-    ,reporters:["default"] //jest-junit主要给ci用得 在package.json的脚本中进行相关配置
+    ,reporters:["default"]
 
     ,collectCoverage:false
 

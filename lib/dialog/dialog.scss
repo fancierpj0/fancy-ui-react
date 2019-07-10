@@ -1,0 +1,44 @@
+@import "../helper";
+
+//不是布局 最好使用px和em？
+.fui-dialog {
+  position: fixed;background: white;min-width: 20em;border-radius: 4px;top:50%;left:50%;transform: translate(-50%,-50%);
+  z-index:2;
+
+  //↓ fui-dialog-mask 而不会是 fui-dialog  fui-dialog-mask
+  &-mask {position: fixed;top: 0;left: 0;width: 100%;height: 100%;
+    background: fade_out(black, .5); //rgba(0, 0, 0, 0.5);
+    z-index:1;
+  }
+
+  &-header{
+    font-size:22px;
+    padding:8px 16px;
+    border-bottom: 1px solid grey;
+  }
+  &-main{
+    padding:8px 16px;
+    min-height:6em;
+  }
+  &-footer{
+    padding:8px 16px;
+    border-top:1px solid grey;
+    //text-align: right;
+    display:flex;
+    justify-content: flex-end;
+  }
+  &-close{
+    background: $main-color;
+    position:absolute;
+    bottom:100%;
+    left:100%;
+    width: 2em;
+    height: 2em;
+    border-radius:50%;
+    transform: translate(-50%,50%);
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    color:white;
+  }
+}

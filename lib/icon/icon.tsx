@@ -2,7 +2,7 @@
 import React from 'react';
 import './importIcons';
 import './icon.scss';
-import classes from '../helpers/classes';
+import {classes} from '../helpers/classes';
 
 //svg能接受的属性都可以接受，并且事件的target为SVGElement
 interface IconProps extends React.SVGAttributes<SVGElement> {
@@ -11,13 +11,13 @@ interface IconProps extends React.SVGAttributes<SVGElement> {
 
 const Icon: React.FunctionComponent<IconProps> = ({className, name, ...restProps}) => {
     return (
-        //svg就是就一个内联块元素(inline-block)
-        <svg className={classes('fui-icon', className)}
-             {...restProps}
-        >
-            <use xlinkHref={`#${name}`}></use>
-        </svg>
-    )
+      //svg就是就一个内联块元素(inline-block)
+      <svg className={classes('fui-icon', className)}
+           {...restProps}
+      >
+          <use xlinkHref={`#${name}`}></use>
+      </svg>
+    );
 };
 
 export default Icon;
