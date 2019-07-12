@@ -6,7 +6,7 @@
   &-content{
     flex-grow:1;
   }
-  & & {
+  &>& {
     flex-direction:row;
     flex-grow: 1;
   }
@@ -15,6 +15,6 @@
     flex-direction: row;
 
     //注意这里不能写 & & ，因为&代表的是当前作用域所属的选择器，这里是 .fui-layout.hasAside 而不是 .fui-layout
-    .fui-layout{flex-direction: column}
+    &>.fui-layout{flex-direction: column}
   }
 }
