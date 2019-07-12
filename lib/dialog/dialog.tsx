@@ -9,7 +9,7 @@ interface Props {
   buttons?: Array<ReactElement>;
   onClose: React.MouseEventHandler;
   closeOnClickMask?: boolean;
-  enabledMask?:boolean;
+  enabledMask?: boolean;
 }
 
 const scopedClass = scopedClassMaker('fui-dialog');
@@ -41,7 +41,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
           {props.children}
         </main>
         {
-          props.buttons && props.buttons.length>0 &&
+          props.buttons && props.buttons.length > 0 &&
           <footer className={sc('footer')}>
             {/* 直接给key是不允许的，需要clone */}
             {props.buttons && props.buttons.map((button, index) => React.cloneElement(button, {key: index}))}
@@ -58,7 +58,10 @@ Dialog.defaultProps = {
   closeOnClickMask: false
 };
 
-const modal = (content: ReactNode, buttons?: Array<ReactElement>,afterClose?:()=>void ) => {
+const modal = (content: ReactNode, buttons?: Array<ReactElement>, afterClose?: () => void) => {
+  /*let isConfirm = false;
+  if (Opt && Opt.type === 'confirm') isConfirm = true;*/
+
   const close = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     ReactDOM.unmountComponentAtNode(div);//事件销毁 垃圾回收的一些工作
@@ -66,7 +69,10 @@ const modal = (content: ReactNode, buttons?: Array<ReactElement>,afterClose?:()=
   };
   const component = <Dialog
     visible={true}
-    onClose={close}
+    onClose={() => {
+      close();
+      afterClose&&afterClose();
+    }}
     buttons={buttons}
   >{content}</Dialog>;
   const div = document.createElement('div');
@@ -76,13 +82,17 @@ const modal = (content: ReactNode, buttons?: Array<ReactElement>,afterClose?:()=
 };
 
 const confirm = (content: string, yes?: () => void, no?: () => void) => {
+  let isCalled = false;
   const onYes = () => {
     close();
     yes && yes();
+    isCalled = true;
   };
   const onNo = () => {
+    if (isCalled) return;
     close();
     no && no();
+    isCalled = true;
   };
 
   const buttons = [
